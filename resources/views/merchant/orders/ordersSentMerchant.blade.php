@@ -38,7 +38,7 @@
     <div class="container-fluid pt-4" >
         <div class="col-md-12" style="background-color:#fff;">
             <div class="container p-3">
-                <p class="fw-semibold">หน้า : คำสั่งซื้อ</p>
+                <p class="fw-semibold">หน้า : รายการสินค้าที่ส่งแล้ว</p>
             </div>
         </div>
     </div>
@@ -52,21 +52,19 @@
                     <td class="fw-semibold">#</td>
                     <td class="fw-semibold">รหัสคำสั่งซื้อ</td>
                     <td class="fw-semibold">ชื่อ</td>
-                    <td class="fw-semibold">รายการสินค้า</td>
-                    <td class="fw-semibold">จำนวน</td>
-                    <td class="fw-semibold">ราคา</td>
-                    <td class="fw-semibold">สถานะ</td>
+                    <td class="fw-semibold">ที่อยู่</td>
+                    <td class="fw-semibold">ขนส่ง</td>
+                    <td class="fw-semibold">รหัสติดตาม</td>
                     <td class="fw-semibold">การจัดการ</td>
                 </tr>
                 <tr>
                     <td>1</td>
                     <td >623613 </td>
                     <td >ศตวรรษ พันธุ์หริ่ง</td>
-                    <td >น้ำตาล</td>
-                    <td >x1</td>
-                    <td>199.00 ฿</td>
-                    <td class="text-danger">รอการจัดส่ง</td>
-                    <td>
+                    <td >92 หมู่ 4 ต.ศรีโคตร อ.จตุรพักตรพิมาน จ.ร้อยเอ็ด 45180</td>
+                    <td>ไปรษณีไทย</td>
+                    <td class="text-success">TH12365613</td>
+                    <td width="15%">
                     <div class="custombtn" >
                         <a href="{{url('/ordersDetailMerchant')}}"><button type="button" >เพิ่มเติม</button></a>
                     </div>

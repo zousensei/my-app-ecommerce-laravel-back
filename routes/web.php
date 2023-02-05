@@ -23,7 +23,11 @@ Route::get('/', function () {
 });
 
 Route::get('/ordersMerchant',         [ordersController::class,'ordersMerchant']);   
+Route::get('/ordersDetailMerchant',   [ordersController::class,'ordersDetailMerchant']);   
+Route::get('/ordersSentMerchant',   [ordersController::class,'ordersSentMerchant']);   
+
 Route::get('/categorysMerchant',      [categoryController::class,'categorysMerchant']);   
+
 Route::get('/productsMerchant',       [productController::class,'productsMerchant']);   
 
 Route::get('/login',                  [loginController::class,'login']);  
