@@ -14,8 +14,12 @@
                 <div class="accordion-body p-2 px-3">
                        
                 <span class="vr"></span> <a href="{{url('/categorysMerchant')}}" class="text-decoration-none text-dark px-2"><i class="fa fa-cube"></i> เพิ่มหมวดหมู่</a> <br>
-                <span class="vr"></span> <a href="{{url('/productsMerchant')}}"  class="text-decoration-none text-dark px-2"><i class="fa fa-cube"></i> รายการ 2</a> <br>
-                        
+                <?php
+                    $category_sidebar = DB::Table('tb_category')->get(); 
+                ?>
+                @foreach ($category_sidebar as $category_sidebars)
+                <span class="vr"></span> <a href="{{url('/productsMerchant')}}"  class="text-decoration-none text-dark px-2"><i class="fa fa-circle-o"></i> {{ $category_sidebars->category_name }}</a> <br>
+                @endforeach    
                 </div>
             </div>
         </div>

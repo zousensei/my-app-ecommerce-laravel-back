@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- sweetalert2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <style>
       .custombtn button {
@@ -61,10 +63,11 @@
                 </div>
                 <div class="modal-body">
                    
-                <form action="">
+                <form action="{{url('/addCategorysMerchant')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="mb-3">
                         <label class="form-label">* รูปภาพ</label>
-                        <input type="file" class="form-control" name="img" required>
+                        <input type="file" class="form-control" name="cover[]" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">* ชื่อหมวดหมู่</label>
@@ -91,18 +94,24 @@
                     <td class="fw-semibold">ชื่อ</td>
                     <td class="fw-semibold">การจัดการ</td>
                 </tr>
+                <?php $i = 1 ; ?>
+                @foreach ($category as $categorys)
+                <?php 
+                    // $category_sidebar = DB::Table('tb_product')->where('category_id', $categorys->category_id)->get(); 
+                    $num_rows = 1 ;
+                 ?>
                 <tr>
-                    <td width="15%"><p  class="pt-3">1</p></td>
-                    <td width="20%"><img src="{{ asset('imgs/category/1.jpg') }}" alt="" width="30%"> </td>
-                    <td width="50%"><p  class="pt-3">ของใช้ทั่วไป</p>  </td>
+                    <td width="15%"><p  class="pt-3">{{ $i++ }}</p></td>
+                    <td width="20%"><img src="{{ asset('category_cover/'.$categorys->category_img.'') }}" alt="" width="30%"> </td>
+                    <td width="50%"><p  class="pt-1">{{ $categorys->category_name }} <br><small class="opacity-50">มีสินค้า {{ $num_rows }} รายการ</small></p>   </td>
                     <td width="15%"> 
                         <div class="pt-3">
-                            <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#editCategory">แก้ไข</button> &nbsp;
-                            <button type="button" class="btn btn-outline-danger  btn-sm">ลบ</button>
+                            <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#editCategory{{ $categorys->category_id  }}">แก้ไข</button> &nbsp;
+                            <a href="{{url('delCategorysMerchant/'.$categorys->category_id.'')}}" type="button" class="btn btn-outline-danger  btn-sm" onclick="return confirm('คุณต้องการลบ [ {{ $categorys->category_name }} ] ใช่ไหม ? ')">ลบ</a>
                         </div>
 
                         <!-- Modal Edit Category -->
-                        <div class="modal fade" id="editCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="editCategory{{ $categorys->category_id  }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
@@ -111,15 +120,16 @@
                             </div>
                             <div class="modal-body">
                                 
-                            <form action="">
+                            <form action="{{url('updateCategorysMerchant/'.$categorys->category_id.'')}}" method="POST" enctype="multipart/form-data">
+                                @csrf  
                                 <div class="mb-3">
                                     <label class="form-label">* เปลี่ยนรูปภาพ</label><br>
-                                    <img src="{{ asset('imgs/category/1.jpg') }}" alt="" width="20%" class="pb-3">
-                                    <input type="file" class="form-control" name="img" required>
+                                    <img src="{{ asset('category_cover/'.$categorys->category_img.'') }}" alt="" width="50%" class="pb-3">
+                                    <input type="file" class="form-control" name="cover[]" value="{{ $categorys->category_img }}" >
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">* ชื่อหมวดหมู่</label>
-                                    <input type="text" class="form-control" name="nameCategory" required>
+                                    <input type="text" class="form-control" name="nameCategory"  value="{{ $categorys->category_name }}" required>
                                 </div>
                                 <div class="custombtn text-center py-2">
                                     <button type="submit" > แก้ไขหมวดหมู่สินค้า</button>
@@ -136,6 +146,8 @@
 
                     </td>
                 </tr>
+                @endforeach
+                
             </table>
 
             </div>
@@ -146,7 +158,19 @@
     </div>
 </div>
 
-    <!-- bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+<script>
+    var alert = "{{Session::get('success')}}";
+    if(alert){
+        Swal.fire({
+            text : alert,
+            confirmButtonColor: "#ee4d2d",
+         })
+    }
+</script>
+
+
+<!-- bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

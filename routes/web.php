@@ -22,14 +22,17 @@ Route::get('/', function () {
     return view('merchant.homeMerchant');
 });
 
-Route::get('/ordersMerchant',         [ordersController::class,'ordersMerchant']);   
-Route::get('/ordersDetailMerchant',   [ordersController::class,'ordersDetailMerchant']);   
-Route::get('/ordersSentMerchant',   [ordersController::class,'ordersSentMerchant']);   
+Route::get('/ordersMerchant',                [ordersController::class,'ordersMerchant']);   
+Route::get('/ordersDetailMerchant',          [ordersController::class,'ordersDetailMerchant']);   
+Route::get('/ordersSentMerchant',            [ordersController::class,'ordersSentMerchant']);   
+ 
+Route::get('/categorysMerchant',             [categoryController::class,'categorysMerchant']);   
+Route::post('/addCategorysMerchant',         [categoryController::class,'addCategorysMerchant']);   
+Route::post('/updateCategorysMerchant/{id}', [categoryController::class,'updateCategorysMerchant']);   
+Route::get('/delCategorysMerchant/{id}',     [categoryController::class,'delCategorysMerchant']);   
 
-Route::get('/categorysMerchant',      [categoryController::class,'categorysMerchant']);   
+Route::get('/productsMerchant',              [productController::class,'productsMerchant']);   
 
-Route::get('/productsMerchant',       [productController::class,'productsMerchant']);   
-
-Route::get('/login',                  [loginController::class,'login']);  
-Route::get('/forgotPassword',         [loginController::class,'forgotPassword']);              
-Route::get('/forgotPasswordOTP',      [loginController::class,'forgotPasswordOTP']);   
+Route::get('/login',                         [loginController::class,'login']);  
+Route::get('/forgotPassword',                [loginController::class,'forgotPassword']);              
+Route::get('/forgotPasswordOTP',             [loginController::class,'forgotPasswordOTP']);   
