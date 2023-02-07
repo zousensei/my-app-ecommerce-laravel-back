@@ -31,7 +31,10 @@ Route::post('/addCategorysMerchant',         [categoryController::class,'addCate
 Route::post('/updateCategorysMerchant/{id}', [categoryController::class,'updateCategorysMerchant']);   
 Route::get('/delCategorysMerchant/{id}',     [categoryController::class,'delCategorysMerchant']);   
 
-Route::get('/productsMerchant',              [productController::class,'productsMerchant']);   
+Route::get('/productsMerchant/{id}',         [productController::class,'productsMerchant']);   
+Route::post('/addProductsMerchant',          [productController::class,'addProductsMerchant']);   
+Route::post('/updateProductsMerchant/{id}',  [productController::class,'updateProductsMerchant']);   
+Route::post('/delProductMerchant/{id}',      [productController::class,'delProductMerchant']);   
 
 Route::get('/login',                         [loginController::class,'login']);  
 Route::get('/forgotPassword',                [loginController::class,'forgotPassword']);              

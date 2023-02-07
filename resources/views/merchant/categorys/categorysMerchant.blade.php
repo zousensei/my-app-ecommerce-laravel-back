@@ -97,8 +97,8 @@
                 <?php $i = 1 ; ?>
                 @foreach ($category as $categorys)
                 <?php 
-                    // $category_sidebar = DB::Table('tb_product')->where('category_id', $categorys->category_id)->get(); 
-                    $num_rows = 1 ;
+                    $categoryChechRow = DB::Table('tb_product')->where('category_id', $categorys->category_id)->get(); 
+                    $num_rows         = $categoryChechRow->count();
                  ?>
                 <tr>
                     <td width="15%"><p  class="pt-3">{{ $i++ }}</p></td>

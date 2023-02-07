@@ -15,6 +15,8 @@ class categoryController extends Controller
         return view('merchant.categorys.categorysMerchant')->with([ 'category' => $categorys ]);
     }
 
+    //-------------------------------------------------------------------------------------//
+
     public function addCategorysMerchant(Request $request){ //เพิ่มข้อมูล Category 
         DB::beginTransaction();
         try {
@@ -41,6 +43,8 @@ class categoryController extends Controller
             return redirect('/categorysMerchant')->withError('ไม่สามารถเพิ่มข้อมูลได้ !');
         }
     }
+
+    //-------------------------------------------------------------------------------------//
 
     public function updateCategorysMerchant(Request $request, $id){ // อัพเดตข้อมูล Category
         DB::beginTransaction();
@@ -73,6 +77,8 @@ class categoryController extends Controller
         }
     }
 
+    //-------------------------------------------------------------------------------------//
+
     public function delCategorysMerchant($id)
     {
         DB::beginTransaction();
@@ -92,6 +98,9 @@ class categoryController extends Controller
             return redirect('/categorysMerchant')->withError('ลบข้อมูลไม่สำเร็จ');
         }
     }
+
+    //-------------------------------------------------------------------------------------//
+    
 
 
 }

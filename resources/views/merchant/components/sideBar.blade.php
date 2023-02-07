@@ -18,7 +18,7 @@
                     $category_sidebar = DB::Table('tb_category')->get(); 
                 ?>
                 @foreach ($category_sidebar as $category_sidebars)
-                <span class="vr"></span> <a href="{{url('/productsMerchant')}}"  class="text-decoration-none text-dark px-2"><i class="fa fa-circle-o"></i> {{ $category_sidebars->category_name }}</a> <br>
+                <span class="vr"></span> <a href="{{url('/productsMerchant/'.$category_sidebars->category_id.'')}}"  class="text-decoration-none text-dark px-2"><i class="fa fa-circle-o"></i> {{ $category_sidebars->category_name }}</a> <br>
                 @endforeach    
                 </div>
             </div>
